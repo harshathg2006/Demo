@@ -1,0 +1,255 @@
+
+
+1. Check running containers
+
+docker ps
+
+
+Lists all active/running containers.
+
+Add -a to see all containers (running + stopped): docker ps -a
+
+2. Stop a running container named web_app
+
+docker stop web_app
+
+
+Replace web_app with your container name if needed.
+
+3. Build an image named myapi from Dockerfile in current directory
+
+docker build -t myapi .
+
+
+-t tags the image name.
+
+. indicates current directory as the build context.
+
+4. Run web_app container and map internal port 5000 → host port 8080
+
+docker run -p 8080:5000 web_app
+
+
+Use -d to run in background:
+
+docker run -d -p 8080:5000 web_app
+
+
+5. Enter a running container shell
+
+docker exec -it harshacontainer /bin/bash
+
+
+If /bin/bash not available, try /bin/sh.
+
+6. Delete an image called old_api
+
+docker rmi old_api
+
+
+Add -f to force deletion if in use:
+
+docker rmi -f old_api
+
+
+7. Check logs of a container
+
+docker logs harshacontainer
+
+
+Add -f to follow logs in real-time:
+
+docker logs -f harshacontainer
+
+
+8. Start a container in background
+
+docker run -d --name harshacontainer harshaimage
+
+
+9. Check which container is using port 3000
+
+docker ps --filter "publish=3000"
+
+
+Or check all port mappings:
+
+docker port harshacontainer
+
+
+10. Tag an existing image
+
+docker tag harshaimage myrepo/harshaimage:latest
+
+
+Format: docker tag <existing_image> <new_name>:<tag>
+
+11. Export an image to .tar file
+
+docker save -o harshaimage.tar harshaimage
+
+
+Import later using:
+
+docker load -i harshaimage.tar
+
+
+12. Restart a container automatically on crash
+
+docker run -d --restart unless-stopped --name harshacontainer harshaimage
+
+
+--restart options: no | on-failure | always | unless-stopped
+
+13. Check CPU/RAM usage of containers
+
+docker stats
+
+
+Shows live CPU, memory, network, and I/O usage.
+
+Limit RAM while running a container
+
+docker run -d --name harshacontainer --memory="500m" --cpus="1" harshaimage
+
+
+--memory limits RAM, --cpus limits CPU cores.
+
+Measure actual memory inside container
+
+docker exec harshacontainer free -m
+
+
+Or check container memory stats:
+
+docker stats harshacontainer
+
+
+
+?????????????????????????????????????????????????
+
+
+
+1. Check running containers
+
+docker ps
+
+
+Lists all active/running containers.
+
+Add -a to see all containers (running + stopped): docker ps -a
+
+2. Stop a running container named web_app
+
+docker stop web_app
+
+
+Replace web_app with your container name if needed.
+
+3. Build an image named myapi from Dockerfile in current directory
+
+docker build -t myapi .
+
+
+-t tags the image name.
+
+. indicates current directory as the build context.
+
+4. Run web_app container and map internal port 5000 → host port 8080
+
+docker run -p 8080:5000 web_app
+
+
+Use -d to run in background:
+
+docker run -d -p 8080:5000 web_app
+
+
+5. Enter a running container shell
+
+docker exec -it harshacontainer /bin/bash
+
+
+If /bin/bash not available, try /bin/sh.
+
+6. Delete an image called old_api
+
+docker rmi old_api
+
+
+Add -f to force deletion if in use:
+
+docker rmi -f old_api
+
+
+7. Check logs of a container
+
+docker logs harshacontainer
+
+
+Add -f to follow logs in real-time:
+
+docker logs -f harshacontainer
+
+
+8. Start a container in background
+
+docker run -d --name harshacontainer harshaimage
+
+
+9. Check which container is using port 3000
+
+docker ps --filter "publish=3000"
+
+
+Or check all port mappings:
+
+docker port harshacontainer
+
+
+10. Tag an existing image
+
+docker tag harshaimage myrepo/harshaimage:latest
+
+
+Format: docker tag <existing_image> <new_name>:<tag>
+
+11. Export an image to .tar file
+
+docker save -o harshaimage.tar harshaimage
+
+
+Import later using:
+
+docker load -i harshaimage.tar
+
+
+12. Restart a container automatically on crash
+
+docker run -d --restart unless-stopped --name harshacontainer harshaimage
+
+
+--restart options: no | on-failure | always | unless-stopped
+
+13. Check CPU/RAM usage of containers
+
+docker stats
+
+
+Shows live CPU, memory, network, and I/O usage.
+
+Limit RAM while running a container
+
+docker run -d --name harshacontainer --memory="500m" --cpus="1" harshaimage
+
+
+--memory limits RAM, --cpus limits CPU cores.
+
+Measure actual memory inside container
+
+docker exec harshacontainer free -m
+
+
+Or check container memory stats:
+
+docker stats harshacontainer
