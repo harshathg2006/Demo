@@ -1,0 +1,170 @@
+Q1).
+
+You are hired as a System Analyst to design an online grocery delivery system for a supermarket chain. Identify the following for the project:
+
+Functional Requirements
+
+Non-Functional Requirements
+
+✅ Answer:
+
+Functional Requirements:
+->
+
+User registration and login
+
+Search for groceries by category/keyword
+
+Add/remove items to cart
+
+Place orders & make payment online
+
+Order tracking and delivery status
+
+Admin can add/update/delete products
+
+Manage inventory & generate reports
+
+Non-Functional Requirements:->
+
+Performance: App must handle 1,000 users concurrently
+
+Security: Encrypt passwords and payment details
+
+Reliability: 99.9% uptime
+
+Usability: Intuitive UI for all age groups
+
+Scalability: Should support more branches and users
+
+Availability: 24/7 service
+
+Q2).
+
+Clone the Metro Booking System repository to your eclipse workspace from the URL below and execute the project by changing the required settings in the POM.xml file and make sure it runs without build errors. (30 Marks)
+URL: https://github.com/amitvna/MetroRepo.git
+
+Resolve dependencies using pom.xml – 10M
+
+Build the project to generate WAR/JAR file – 10M
+
+Run and check services in the target folder – 5M
+
+Answer scenario-based questions – 5M
+
+Scenario-based Q (Maven):
+
+a) You added a new dependency for MySQL connector in pom.xml, but it is not downloading. Which command will you run in Maven to update dependencies?
+
+Ans:mvn clean install -U or mvn dependency:resolve
+
+b) The Metro Booking System requires different DB settings for dev and prod. How do you configure Maven to handle this?
+
+Ans:Use Maven profiles in pom.xml (dev & prod profiles with separate properties).
+
+c) You updated pom.xml, but Maven is still using old cached dependencies. How do you clear and re-download?
+
+Ans:Run mvn dependency:purge-local-repository
+
+d) Maven build fails with Plugin org.apache.maven.plugins:maven-compiler-plugin not found. How do you fix?
+
+Ans:Add correct plugin version in pom.xml and run mvn clean install. (Also check internet access or mirrors.)
+
+Q3). Working with VCS (Git) and GitHub – 20 Marks
+
+Create a Git repository and add your project files – 5M
+
+Set global config, and push your Maven project to GitHub – 5M
+
+Solve the given scenario-based questions – 10M
+
+Git Scenario Questions & Answers:
+
+a) Your teammate force-pushed the main branch of Metro Repo, and now your local history doesn’t match. Steps to align safely without losing local work:
+
+Ans:git fetch origin → create a backup branch → git rebase origin/main or git pull --rebase.
+
+b) While merging payment-module into main, you face a conflict in BookingController.java. How to resolve?
+
+Ans:Open the file, edit conflict markers, then git add & git commit.
+
+c) Accidentally deleted booking-module branch (not merged). How to restore?
+
+Ans:git reflog → find commit → git checkout -b booking-module <commit-id>.
+
+d) Made three commits (typo fix, optimization, query) in FlightSearchController.java but manager wants one commit.
+
+Ans:git rebase -i HEAD~3 → squash commits → update message.
+
+e) Committed “Removed metro cancellation feature” but need it back.
+
+Ans:git revert <commit-id>
+
+f) Started implementing DiscountService.java but paused for hotfix.
+
+Ans:Use git stash before switching branches.
+
+g) Too many merge commits cluttering history.
+
+Ans:Use git pull --rebase or git rebase instead of merge.
+
+h) Need to generate patch files for last 2 commits in payment-module.
+
+Ans:git format-patch -2
+
+i) Force-pushed to main by mistake and overwrote teammate’s commit.
+
+Ans:git reflog → git reset --hard <good-commit> → push with --force-with-lease.
+
+Q4). Containerize your Maven project using Docker – 20 Marks
+
+Dockerfile Creation – 3 Marks
+
+Image Building – 2 Marks
+
+Push to Docker Hub – 5 Marks
+
+Scenario-based Questions – 10 Marks
+
+Docker Scenario Q & Answers (10 ×1 = 10M):
+
+a) Write Docker command to build image named metro-booking-app.
+
+Ans:docker build -t metro-booking-app .
+
+b) Run Metro Booking System on port 8080; map to host port 9090.
+
+Ans:docker run -d -p 9090:8080 metro-booking-app
+
+c) Run multiple containers for testing (ports 8081 & 8082).
+
+Ans:docker run -d -p 8081:8080 metro-booking-app
+    docker run -d -p 8082:8080 metro-booking-app
+
+d) Teammate pushed updates to Dockerfile on main. How to rebuild?
+
+Ans:git pull → docker build -t metro-booking-app:v2 .
+
+e) See logs of container named flight-booking.
+
+Ans:docker logs flight-booking
+
+f) Image consuming too much space. Remove unused images.
+
+Ans:docker image prune -a
+
+g) Update image on port 8085. Remove old & run new.
+
+Ans:docker stop <id> → docker rm <id> → docker run -d -p 8085:8080 metro-booking-app:new
+
+h) Container crashes at startup. Enter container shell.
+
+Ans:docker exec -it <container-id> /bin/bash
+
+i) Check which port a container maps to.
+
+Ans:docker port <container-id>
+
+j) Stop a running container with ID c1a2b3.
+
+Ans:docker stop c1a2b3
